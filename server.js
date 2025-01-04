@@ -16,7 +16,7 @@ app.use((err, req, res, next) => {
     .status(500)
     .json({ success: false, message: err.message || "rSomething went wrong" });
 });
-
+console.log("DB_URL", DB_URL);
 mongoose
   .connect(DB_URL)
   .then(() => {
