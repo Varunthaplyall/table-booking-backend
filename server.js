@@ -20,12 +20,11 @@ app.use((err, req, res, next) => {
     .status(500)
     .json({ success: false, message: err.message || "rSomething went wrong" });
 });
-console.log("DB_URL : ", DB_URL);
 mongoose
   .connect(DB_URL)
   .then(() => {
     console.log("Connected to DB");
-    app.listen(PORT, () => console.log("Server is running"));
+    app.listen(PORT, "0.0.0.0", () => console.log("Server is running"));
   })
 
   .catch((e) => console.log(e));
