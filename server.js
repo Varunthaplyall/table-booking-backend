@@ -5,7 +5,11 @@ const { PORT, DB_URL } = process.env;
 const app = express();
 const cors = require("cors");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use(express.json());
 
@@ -16,7 +20,7 @@ app.use((err, req, res, next) => {
     .status(500)
     .json({ success: false, message: err.message || "rSomething went wrong" });
 });
-console.log("DB_URL", DB_URL);
+console.log("DB_URL : ", DB_URL);
 mongoose
   .connect(DB_URL)
   .then(() => {
